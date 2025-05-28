@@ -88,30 +88,44 @@ export default function AdminDashboard() {
     window.location.href = '/admin/login'
   }
 
-  const addMarketing = (user) => {
-    console.log(user.user.id)
-    setEditingUser(user.id)
+  const addMarketing = async (user) => {
     const editData = {
-      'id': editingUser,
-      'role': "Marketing"
+      'id': user.id,
+      'role': "marketing"
     }
     console.log(editData)
-    // const response = axios.post(
-    //   `${API_BASE_URL}superadmin/add_role`,
-    //   editData,
-    //   {
-    //     headers: {
-    //       Authorization: `Bearer ${cookies.access_token}`,
-    //       "Content-Type": 'application/json',
-    //     }
-    //   }
-    // )
+    const response = await axios.post(
+      `${API_BASE_URL}superadmin/add_role/`,
+      editData,
+      {
+        headers: {
+          Authorization: `Bearer ${cookies.access_token}`,
+          "Content-Type": 'application/json',
+        }
+      }
+    )
 
-    // console.log(response)
+    console.log(response)
   }
 
-  const addSales = (user) => {
+  const addSales = async (user) => {
+    const editData = {
+      'id': user.id,
+      'role': "sales"
+    }
+    console.log(editData)
+    const response = await axios.post(
+      `${API_BASE_URL}superadmin/add_role/`,
+      editData,
+      {
+        headers: {
+          Authorization: `Bearer ${cookies.access_token}`,
+          "Content-Type": 'application/json',
+        }
+      }
+    )
 
+    console.log(response)
   }
 
   const handleSave = async () => {
